@@ -58,5 +58,6 @@ int main()
 {
     char str[] = "aaabbbbbccc";
     char *res = encode(str);
+cout<<"hi";
     printf("%s", res);
 }
