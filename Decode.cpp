@@ -14,7 +14,6 @@ int print(int a[], int i, int n, char *s) {
 
     int ans = 0;
     if(i < n-1 && a[i+1] <= 6 && a[i] <= 2) {
-        char *t = (char *) strcat();
        // char *t = s+(char )(a[i]*10+a[i+1]+'a'-1);
         ans += print(a, i+2, n, t )+1;
     }
