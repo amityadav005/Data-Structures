@@ -53,7 +53,7 @@ char *encode(char *src)
     return dest;
 }
 
-/*driver program to test above function */
+/*driver program to test above function dfgdf */
 int main()
 {
     char str[] = "aaabbbbbccc";
