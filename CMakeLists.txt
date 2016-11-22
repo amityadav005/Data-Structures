@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.6)
+project(Demo)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+
+set(SOURCE_FILES   Ex.cpp)
+add_executable(Demo ${SOURCE_FILES})
+add_executable(minStringLengthContainingAllChars minStringLengthContainingAllChars.cpp)
+add_executable(Ex Ex.cpp)
+add_executable(NextGreaterElement NextGreaterElement.cpp)
+add_executable(MergeOverlappingIntervals MergeOverlappingIntervals.cpp)
+add_executable(KthMinElementf KthMinElementfromStream.cpp)
+add_executable(a KthMinElementfromStreamUsingHeap.cpp)
+add_executable(KthMinBST KthMinBST.cpp)
+add_executable(CloneBinaryTree CloneBinaryTree.cpp)
+add_executable(FlipToGetMaxOnes FlipToGetMaxOnes.cpp)
