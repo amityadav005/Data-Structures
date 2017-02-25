@@ -7,21 +7,22 @@ void fun(char *str1,char* str2){
     bool sub[MAX];
     while(str2[i]){
         ++count[str2[i]];
-        sub[str2[i]]=true;
+        //sub[str2[i]]=true;
         i++;
     }
     i=0;
-    int l=0,r=0,k=0;
+    int l=-1,r=0,k=0;
     int count1[MAX]={0};
     while(str1[i]){
         if(k==strlen(str2))
             break;
         if(count[str1[i]]){
+            if(l==-1)
+                l=i;
             count[str1[i]]--;
             ++k;
         }
-        if(sub[str1[i]])
-            count1[str1[i]]++;
+
         i++;
     }
     r=i-1;
@@ -32,8 +33,7 @@ void fun(char *str1,char* str2){
     }
     j=0;
     while(str1[i]){
-        while(!count[str1[i]])
-            i++;
+
         if(str1[i]==str1[j])
         {
             j++;
@@ -51,8 +51,8 @@ void fun(char *str1,char* str2){
         printf("%c",str1[i]);
 }
 int main(){
-    char str1[]="this is a test string";
-    char str2[]="tist";
+    char str1[]="ghgthis is a test string";
+    char str2[]="ti";
     fun(str1,str2);
     return 0;
 }
