@@ -1,58 +1,69 @@
-#include<stdio.h>
-#include<string.h>
-#define MAX 256
-void fun(char *str1,char* str2){
-    int i=0;
-    int count[MAX]={0};
-    bool sub[MAX];
-    while(str2[i]){
-        ++count[str2[i]];
-        //sub[str2[i]]=true;
-        i++;
-    }
-    i=0;
-    int l=-1,r=0,k=0;
-    int count1[MAX]={0};
-    while(str1[i]){
-        if(k==strlen(str2))
-            break;
-        if(count[str1[i]]){
-            if(l==-1)
-                l=i;
-            count[str1[i]]--;
-            ++k;
-        }
+// C++ program to implement a stack using
+// single queue
+#include<bits/stdc++.h>
+using namespace std;
 
-        i++;
-    }
-    r=i-1;
-    int j=0,m=r-l+1;
-    while(str2[j]){
-        ++count[str2[j]];
-        j++;
-    }
-    j=0;
-    while(str1[i]){
+// User defined stack that uses a queue
+struct Stack
+{
+    queue<int>q;
 
-        if(str1[i]==str1[j])
-        {
-            j++;
-            while(!count[str1[j]])
-                j++;
-        }
-        if(i-j+1<m){
-            m=i-j+1;
-            l=j;
-            r=i;
-        }
-        i++;
+};
+
+// Push operation
+void push(int val, Stack *s)
+{
+    // Get previous size of queue
+    int si = s->q.size();
+
+    // Push current element
+    s->q.push(val);
+
+    // Pop (or Dequeue) all previous
+    // elements and put them after current
+    // element
+    for (int i=0; i<si; i++)
+    {
+        // this will add front element into
+        // rear of queue
+        s->q.push(s->q.front());
+
+        // this will delete front element
+        s->q.pop();
     }
-    for(i=l;i<=r;i++)
-        printf("%c",str1[i]);
 }
-int main(){
-    char str1[]="ghgthis is a test string";
-    char str2[]="ti";
-    fun(str1,str2);
+
+// Removes the top element
+void pop(Stack *s)
+{
+    if (s->q.empty())
+        cout << "No elements\n";
+    else
+        s->q.pop();
+}
+
+// Returns top of stack
+int top(Stack *s)
+{
+    return (s->q.empty())? -1 : s->q.front();
+}
+
+// Returns true if Stack is empty else false
+bool empty(Stack *s)
+{
+    return (s->q.empty());
+}
+
+// Driver code
+int main()
+{
+    Stack * s;
+    push(10,s);
+    s.push(20,s);
+    cout << s.top() << endl;
+    s.pop();
+    s.push(30);
+    s.pop();
+    cout << s.top() << endl;
     return 0;
 }

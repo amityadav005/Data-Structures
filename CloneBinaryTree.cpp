@@ -1,79 +1,78 @@
-//
-// Created by Amit on 11/21/2016.
-//
-
 #include <iostream>
 #include <malloc.h>
-
+#include<map>
 using namespace std;
-struct Node{
+struct node{
     int data;
-    Node * left;
-    Node * right;
-    Node* ran;
+    node* left;
+    node* right;
+    node* ran;
 };
-struct random{
-    Node * key;
-    Node * val;
-
-};
-random map[100];
-int size = -1;
-void put(Node * key, Node * val){
-    size++;
-    map[size].key=key;
-    map[size].val=val;
-}
-Node* get(Node* val) {
-    Node *temp;
-    for (int i = 0; i < size; i++) {
-        if (map[i].val == val) {
-            temp = map[i].key->ran;
-        }
-    }
-    return temp;
-}
-
-Node * newNode(int data){
-    Node *temp = (Node *)malloc(sizeof(Node));
-    temp->data = data;
-    temp->left=NULL;
-    temp->right=NULL;
-    temp->ran = NULL;
-    return temp;
-}
-void populateRan(Node * root){
-    if(root==NULL)
+void printInorder(node* node)
+{
+    if (node == NULL)
         return;
-    populateRan(root->left);
-    root->ran = get(root->ran);
-    populateRan(root->right);
+
+    /* First recur on left sutree */
+    printInorder(node->left);
+
+    /* then print data of Node and its random */
+    cout << "[" << node->data << " ";
+    if (node->ran == NULL)
+        cout << "NULL], ";
+    else
+        cout << node->ran->data << "], ";
+
+    /* now recur on right subtree */
+    printInorder(node->right);
 }
 
-Node* clone(Node * root){
+node* newNode(int data){
+    node* temp = (node*)malloc(sizeof(node));
+    temp->data = data;
+    temp->left=temp->right=temp->ran =NULL;
+    return temp;
+}
+node*  copyleftright(node* root, map<node*, node* > &m){
     if(root==NULL)
         return NULL;
-    Node * temp = (Node *)malloc(sizeof(Node));
-    temp->data = root->data;
-    put(root, temp);
-    temp->left = clone(root->left);
-    temp->right = clone(root->right);
-    return temp;
+    node* cloneNode = newNode(root->data);
+    m[root] = cloneNode;
+    cloneNode->left = copyleftright(root->left, m);
+    cloneNode->right =copyleftright(root->right, m);
+
 }
-void inorder(Node * root){
-    if(root==NULL)
+void copyRandom(node* root,node* cloneNode, map<node*, node* > &m){
+    if (cloneNode == NULL)
         return;
-    inorder(root->left);
-    cout<<root->data<<" ";
-    inorder(root->right);
+    cloneNode->ran = m[root->ran];
+    copyRandom(root->left, cloneNode->left, m);
+    copyRandom(root->right, cloneNode->right, m);
 }
-int main(){
-    Node * root  =newNode(10);
-    root->ran=root->left;
-    root->left = newNode(20);
-    root->right = newNode(30);
-    //Node * temp = clone(root);
-    //populateRan(temp);
-    //inorder(temp);
-    cout<<root->ran->data;
+node* cloneTree(node* root){
+    map<node*, node* >m;
+    node* cnode = copyleftright(root, m);
+    copyRandom(root, cnode,m);
+    return cnode;
+}
+int main() {
+    node *tree = newNode(1);
+    tree->left = newNode(2);
+    tree->right = newNode(3);
+    tree->left->left = newNode(4);
+    tree->left->right = newNode(5);
+    tree->ran = tree->left->right;
+    tree->left->left->ran = tree;
+    tree->left->right->ran = tree->right;
+
+
+
+    cout << "Inorder traversal of original binary tree is: \n";
+    printInorder(tree);
+
+    node *clone = cloneTree(tree);
+
+    cout << "\n\nInorder traversal of cloned binary tree is: \n";
+    printInorder(clone);
+    return 0;
 }

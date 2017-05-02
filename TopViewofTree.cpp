@@ -25,24 +25,21 @@ void inorder(Node *root) {
     inorder(root->right);
 }
 
-void top_view(Node *root, int min, int max, int level, int k) {
+void top_view(Node *root, int min, int max, int level) {
     if (root == NULL)
         return;
-    if (k == 1) {
-        cout << root->data;
-        k = 0;
-    } else {
 
-        if (level < min) {
-            cout << root->data;
-            min = level;
-        } else if (level > max) {
-            cout << root->data;
-            max = level;
-        }
+
+    if (level == min) {
+        cout << root->data<<" ";
+        min = level-1;
+    } else if (level == max) {
+        cout << root->data<<" ";
+        max = level+1;
     }
-    top_view(root->left, min, max, level - 1, k);
-    top_view(root->right, min, max, level + 1, k);
+
+    top_view(root->left, min, max, level - 1);
+    top_view(root->right, min, max, level + 1);
 
 
 }
@@ -60,6 +57,7 @@ int main() {
     root->left->right->left->left->left = newNode(66);
     root->right->left = newNode(7);
     root->right->right = newNode(5);
-    top_view(root, 0, 0, 0, 1);
+    // cout<<root->data;
+    top_view(root, 0, 1, 0);
 
 }
