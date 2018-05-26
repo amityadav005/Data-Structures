@@ -75,13 +75,14 @@ int diameter(struct node *root, int* height, node* *node)
 /* Height of current node is max of heights of left and
 	right subtrees plus 1*/
     *height = max(lh, rh) + 1;
-    if(((lh + rh + 1)>=ldiameter)&&((lh + rh + 1)>=rdiameter))
+    int t = lh + rh + 1;
+    if(((t)>=ldiameter)&&((t)>=rdiameter))
         *node = root;
-    else if((ldiameter>=(lh + rh + 1))&&(ldiameter>= rdiameter))
+    else if((ldiameter>=(t))&&(ldiameter>= rdiameter))
         *node = root->left;
-    else if((rdiameter>=(lh + rh + 1))&&(rdiameter>= ldiameter))
+    else if((rdiameter>=(t))&&(rdiameter>= ldiameter))
         *node = root->right;
-    return max(lh + rh + 1, max(ldiameter, rdiameter));
+    return max(t, max(ldiameter, rdiameter));
 }
 int main()
 {
