@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/MatrixMultiplicationRecur.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CloneBinaryTree.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/TopViewofTree.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/BFS.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Diameter.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/StringCompression.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SortStringArray.cpp" isTestSource="false" />
@@ -16,7 +17,6 @@
       <sourceFolder url="file://$MODULE_DIR$/ex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Examp.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PrintAllWordsTrie.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/MinWindowContainingAllChars.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ReverseStringWords.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/StackUsingQueue.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Decode.cpp" isTestSource="false" />
@@ -26,10 +26,11 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/KFrequent.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/StringCompressionInplace.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/FlipToGetMaxOnes.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MinWindowContainingAllChars.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Kfrequen.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/histogram.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/KthSmallestInSortedMatrix.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/FlipToGetMaxOnes.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FoldLinkList.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/KthMinElementfromStreamUsingHeap.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CloneLinkedListUsingMap.cpp" isTestSource="false" />
@@ -41,7 +42,7 @@
       <sourceFolder url="file://$MODULE_DIR$/PrintSpiralMatrix.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MergeOverlappingIntervals.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SubtractLinkedList.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/BFS.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/LinkedListDelete.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PlusPattern.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/NextGreaterElement.cpp" isTestSource="false" />
     </content>
