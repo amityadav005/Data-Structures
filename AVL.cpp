@@ -1,36 +1,36 @@
 #include <iostream>
 using namespace std;
-struct node{
-    int data;
-    node* left;
-    node* right;
+struct Node{
+    int key;
+    Node* left;
+    Node* right;
     int height;
 };
 int max(int a, int b)
 {
     return (a > b)? a : b;
 }
-node* newNode(int data){
-     node* temp = (node*)malloc(sizeof(node));
-     temp->data = data;
+Node* newNode(int key){
+     Node* temp = (Node*)malloc(sizeof(Node));
+     temp->key = key;
      temp->left = NULL;
      temp->right = NULL;
      temp->height = 1;
      return temp;
 }
-int height(node* root){
-    if(root=NULL)
+int height(Node* root){
+    if(root==NULL)
         return 0;
     return root->height;
 }
-int balance(node* root){
+int balance(Node* root){
     if(root==NULL)
     return 0;
     return height(root->left) - height(root->right);
 }
-node* leftRotate(node* root){
-    node* t1 = root->left;
-    node* t2 = t1->right;
+Node* leftRotate(Node* root){
+    Node* t1 = root->left;
+    Node* t2 = t1->right;
 
     root->left = t2;
     t1->right = root;
@@ -40,9 +40,9 @@ node* leftRotate(node* root){
 
     return t1;
 }
-node* rightRotate(node* root){
-    node* t1 = root->right;
-    node* t2 = t1->left;
+Node* rightRotate(Node* root){
+    Node* t1 = root->right;
+    Node* t2 = t1->left;
 
     t1->left = root;
     root->right = t2;
@@ -52,47 +52,47 @@ node* rightRotate(node* root){
 
     return t1;
 }
-node* insert(node* root, int data){
+Node* insert(Node* root, int key){
     if(root==NULL)
-    return newNode(data);
+    return newNode(key);
 
-    if(data < root->data)
-        root->left = insert(root->left, data);
+    if(key < root->key)
+        root->left = insert(root->left, key);
 
-    if(data > root->data)
-        root->right = insert(root->right, data);
+    if(key > root->key)
+        root->right = insert(root->right, key);
     else
         return root;
 
     int bal = balance(root);
 
-    if(bal > 1 && data < root->left->data){
+    if(bal > 1 && key < root->left->key){
         return rightRotate(root);
     }
-    if(bal > 1 && data > root->left->data){
+    if(bal > 1 && key > root->left->key){
         root->left = leftRotate(root->left);
         return rightRotate(root);
     }
-    if(bal < -1 && data > root->right->data){
+    if(bal < -1 && key > root->right->key){
         return rightRotate(root);
     }
-    if(bal < -1 && data < root->right->data){
+    if(bal < -1 && key < root->right->key){
         root->right = rightRotate(root->right);
         return leftRotate(root);
     }
     return root;
 }
-void preOrder(struct node *root)
+void preOrder(struct Node *root)
 {
     if(root != NULL)
     {
-        cout<<root->data;
+        cout<<root->key<<" ";
         preOrder(root->left);
         preOrder(root->right);
     }
 }
 int main() {
-	struct node *root = NULL;
+	struct Node *root = NULL;
 
   root = insert(root, 10);
   root = insert(root, 20);
