@@ -56,13 +56,12 @@ node* insert(node* root, int data){
     if(root==NULL)
     return newNode(data);
 
-    if(data < root->left->data)
+    if(data < root->data)
         root->left = insert(root->left, data);
 
-    if(data > root->right->data)
+    if(data > root->data)
         root->right = insert(root->right, data);
-
-    if(data==root->data)
+    else
         return root;
 
     int bal = balance(root);
@@ -74,11 +73,11 @@ node* insert(node* root, int data){
         root->left = leftRotate(root->left);
         return rightRotate(root);
     }
-    if(bal < 1 && data > root->right->data){
+    if(bal < -1 && data > root->right->data){
         return rightRotate(root);
     }
-    if(bal < 1 && data < root->right->data){
-        root->right = rightRotate(root->left);
+    if(bal < -1 && data < root->right->data){
+        root->right = rightRotate(root->right);
         return leftRotate(root);
     }
     return root;
