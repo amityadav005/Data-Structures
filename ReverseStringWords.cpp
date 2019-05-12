@@ -1,29 +1,32 @@
-#include<bits/stdc++.h>
-
-
+#include <iostream>
+#include<cstring>
 using namespace std;
 
-
-int main()
-{
-
-    string str,temp,ans;
-    str = "this is my name";
-    int l=str.length();
-
-    for(int i=0;i<l;i++){
-        temp="";
-        while(str[i]!=' ' && i<l){
-            temp+=str[i];
+void reverse(string str){
+    string ans = "";
+    string temp = "";
+    
+    int l = str.length();
+    int i = 0;
+    while(i<l){
+    temp = "";   
+        while(i<l && str[i]!=' '){
+            temp  = temp + str[i];
             i++;
         }
-        ans = temp + ans;
-        if(i<l)
-            ans = str[i] + ans;
-
+            ans = temp+ans;
+        if(i<l){
+            ans = str[i] + ans ;
+            i++;
+        }
     }
-    cout<<ans;
+    cout<< ans;
+    
+    
+}
 
-
-    return 0;
+int main() {
+    string str = "this is a string";
+    reverse(str);
+	return 0;
 }
