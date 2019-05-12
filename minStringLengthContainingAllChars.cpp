@@ -1,67 +1,93 @@
-#include<stdio.h>
-#include<string.h>
-#define MAX 256
-void fun(char *str1,char* str2){
-    int i=0;
-    int count[MAX]={0};
-    bool sub[MAX];
-    while(str2[i]){
-        ++count[str2[i]];
-        sub[str2[i]]=true;
-        i++;
-    }
-    i=0;
-    int l=0,r=0,k=0;
-    int count1[MAX]={0};
-    while(str1[i]){
-        if(k==strlen(str2))
-            break;
-        if(count[str1[i]]){
-            count[str1[i]]--;
-            ++k;
-        }
-        if(sub[str1[i]])
-            count1[str1[i]]++;
-        i++;
-    }
-    r=i-1;
-    int j=0,m=r-l+1;
-    while(str2[j]){
-        ++count[str2[j]];
-        j++;
-    }
-    j=0;
-    while(!count[str1[j]])
-        j++;
-    while(str1[i]){
-        if(count[str1[i]])
-            ++count1[str1[i]];
-        if(str1[i]==str1[j]){
-            while(1){
-                if(count[str1[j]]&&count1[str1[j]]==count[str1[j]]){
-                    if(i-j+1<m){
-                        m=i-j+1;
-                        l=j;
-                        r=i;
-                    }
-                    break;
-                }
-                if(count[str1[j]]&&count1[str1[j]]>count[str1[j]]){
-                    count1[str1[j]]--;
-                    j++;
-                }
-                if(!count[str1[j]])
-                    j++;
-            }
-        }
-        i++;
-    }
-    for(i=l;i<=r;i++)
-        printf("%c",str1[i]);
-}
-int main(){
-    char str1[]="his is a test string";
-    char str2[]="tist";
-    fun(str1,str2);
-    return 0;
-}
+// C++ program to find smallest window containing 
+// all characters of a pattern. 
+#include<bits/stdc++.h> 
+using namespace std; 
+
+const int no_of_chars = 256; 
+
+// Function to find smallest window containing 
+// all characters of 'pat' 
+string findSubString(string str, string pat) 
+{ 
+	int len1 = str.length(); 
+	int len2 = pat.length(); 
+
+	// check if string's length is less than pattern's 
+	// length. If yes then no such window can exist 
+	if (len1 < len2) 
+	{ 
+		cout << "No such window exists"; 
+		return ""; 
+	} 
+
+	int hash_pat[no_of_chars] = {0}; 
+	int hash_str[no_of_chars] = {0}; 
+
+	// store occurrence ofs characters of pattern 
+	for (int i = 0; i < len2; i++) 
+		hash_pat[pat[i]]++; 
+
+	int start = 0, start_index = -1, min_len = INT_MAX; 
+
+	// start traversing the string 
+	int count = 0; // count of characters 
+	for (int j = 0; j < len1 ; j++) 
+	{ 
+		// count occurrence of characters of string 
+		hash_str[str[j]]++; 
+
+		// If string's char matches with pattern's char 
+		// then increment count 
+		if (hash_pat[str[j]] != 0 && 
+			hash_str[str[j]] <= hash_pat[str[j]] ) 
+			count++; 
+
+		// if all the characters are matched 
+		if (count == len2) 
+		{ 
+			// Try to minimize the window i.e., check if 
+			// any character is occurring more no. of times 
+			// than its occurrence in pattern, if yes 
+			// then remove it from starting and also remove 
+			// the useless characters. 
+			while ( hash_str[str[start]] > hash_pat[str[start]] 
+				|| hash_pat[str[start]] == 0) 
+			{ 
+
+				if (hash_str[str[start]] > hash_pat[str[start]]) 
+					hash_str[str[start]]--; 
+				start++; 
+			} 
+
+			// update window size 
+			int len_window = j - start + 1; 
+			if (min_len > len_window) 
+			{ 
+				min_len = len_window; 
+				start_index = start; 
+			} 
+		} 
+	} 
+
+	// If no window found 
+	if (start_index == -1) 
+	{ 
+	cout << "No such window exists"; 
+	return ""; 
+	} 
+
+	// Return substring starting from start_index 
+	// and length min_len 
+	return str.substr(start_index, min_len); 
+} 
+
+// Driver code 
+int main() 
+{ 
+	string str = "this is a test string"; 
+	string pat = "tist"; 
+
+	cout << "Smallest window is : \n"
+		<< findSubString(str, pat); 
+	return 0; 
+} 
